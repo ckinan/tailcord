@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	serviceName = "cktail"
+	serviceName = "tailcord"
 	discordAPI  = "https://discord.com/api/v10"
 )
 
@@ -79,18 +79,18 @@ func main() {
 		return
 	}
 	if *channelName == "" {
-		fmt.Fprintln(os.Stderr, "usage: cktail --channel=NAME [-n N] [-f]")
+		fmt.Fprintln(os.Stderr, "usage: tailcord --channel=NAME [-n N] [-f]")
 		os.Exit(1)
 	}
 
 	token, err := keyring.Get(serviceName, "token")
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "no token found, run `cktail auth` first")
+		fmt.Fprintln(os.Stderr, "no token found, run `tailcord auth` first")
 		os.Exit(1)
 	}
 	guildID, err := keyring.Get(serviceName, "guild_id")
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "no guild ID found, run `cktail auth` first")
+		fmt.Fprintln(os.Stderr, "no guild ID found, run `tailcord auth` first")
 		os.Exit(1)
 	}
 
@@ -350,7 +350,7 @@ func followChannel(token, channelID string, n int) error {
 	identifyJSON, _ := json.Marshal(identifyData{
 		Token:      "Bot " + token,
 		Intents:    33280,
-		Properties: identifyProps{OS: "linux", Browser: "cktail", Device: "cktail"},
+		Properties: identifyProps{OS: "linux", Browser: "tailcord", Device: "tailcord"},
 	})
 	if err := conn.WriteJSON(gatewayPayload{Op: 2, D: identifyJSON}); err != nil {
 		return fmt.Errorf("sending IDENTIFY: %w", err)

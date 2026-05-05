@@ -1,4 +1,4 @@
-module github.com/ckinan/cktail
+module github.com/ckinan/tailcord
 
 go 1.25.0
 
