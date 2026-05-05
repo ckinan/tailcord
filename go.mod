@@ -3,6 +3,7 @@ module github.com/ckinan/cktail
 go 1.25.0
 
 require (
+	github.com/gorilla/websocket v1.5.3
 	github.com/zalando/go-keyring v0.2.8
 	golang.org/x/term v0.42.0
 )
