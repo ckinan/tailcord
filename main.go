@@ -46,6 +46,8 @@ type Message struct {
 
 func main() {
 	channelName := flag.String("channel", "", "Discord channel name to tail")
+	n := flag.Int("n", 10, "Number of messages to show (default: 10)")
+
 	flag.Parse()
 	if len(flag.Args()) > 0 && flag.Args()[0] == "auth" {
 		runAuth()
@@ -73,7 +75,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	messages, err := fetchMessages(token, channelID, 10)
+	messages, err := fetchMessages(token, channelID, *n)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
